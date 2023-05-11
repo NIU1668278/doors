@@ -1,0 +1,50 @@
+@startuml
+skinparam ClassAttributeIconSize 0
+class Door {
+    - id : String
+    - _code_handler : CodeHandler
+    + num_trials : int
+    + locked : boolean
+    + MAX_TRIALS : int
+    + Door(id : String, code_handler : CodeHandler)
+    + process_code(code : String)
+    + open()
+    + reset_state()
+}
+
+abstract class CodeHandler {
+    # next_handler
+    + CodeHandler(next : CodeHandler)
+    + handle_code(code : String, door : Door)
+}
+
+class Log extends CodeHandler{
+     + handle_code(code : String, door : Door)
+}
+
+class Open extends CodeHandler{
+    - _code : String
+    + Open(code : String, next_handler : CodeHandler)
+     + handle_code(code : String, door : Door)
+}
+
+class FireAlarm extends CodeHandler{
+    - _code : String
+    + FireAlarm(code : String, next_handler : CodeHandler)
+     + handle_code(code : String, door : Door)
+}
+
+class Unlock extends CodeHandler{
+    - _code : String
+    + Unlock(code : String, next_handler : CodeHandler)
+     + handle_code(code : String, door : Door)
+}
+
+class Lock extends CodeHandler {
+     + handle_code(code : String, door : Door)
+}
+
+Door --> CodeHandler: _code_handler
+CodeHandler --> "0,1" CodeHandler: next_handler
+
+@enduml

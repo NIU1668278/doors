@@ -1,0 +1,9 @@
+Authors:
+    - Casadellà Cors, Guim
+      NIU: 1607484
+
+    - Miquel Coll, Santi
+      NIU:
+
+    - Herrero Lázaro, Marc
+      NIU: 1668278
